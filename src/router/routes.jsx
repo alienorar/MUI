@@ -5,7 +5,7 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 const admin = [
     {
         content: "Teachers",
-        path: "/admin-layout/teachers-list",
+        path: "/admin-layout",
         icon:<CastForEducationIcon/>
         
     },
