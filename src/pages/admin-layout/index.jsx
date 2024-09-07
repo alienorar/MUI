@@ -51,7 +51,7 @@ function ResponsiveDrawer(props) {
           <ListItem key={index} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {item.icon}
               </ListItemIcon>
               <NavLink to={item.path}>{item.content}</NavLink>
             </ListItemButton>
@@ -87,7 +87,7 @@ function ResponsiveDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+            Admin Rights
           </Typography>
         </Toolbar>
       </AppBar>

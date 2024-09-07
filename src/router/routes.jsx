@@ -1,26 +1,38 @@
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import CastForEducationIcon from '@mui/icons-material/CastForEducation';
+import Groups3Icon from '@mui/icons-material/Groups3';
+import AssignmentIcon from '@mui/icons-material/Assignment';
 const admin = [
     {
         content: "Teachers",
-        path: "./admin-rights/teachers-list",
-        icon: ""
+        path: "/admin-layout/teachers-list",
+        icon:<CastForEducationIcon/>
+        
     },
     {
         content: "Students",
-        path: "./admin-rights/students-list",
-        icon: ""
+        path: "/admin-layout/students-list",
+        icon: <Groups3Icon/>
     },
-]
+];
+
 const student = [
     {
         content: "Groups",
-        path: "",
-        icon: ""
+        path: "/student-layout",
+        icon: <Groups3Icon />
     },
     {
         content: "Rating",
-        path: "",
-        icon: ""
+        path: "/student-layout/rating",
+        icon: <TrendingUpIcon />,
     },
+    {
+        content: "Tasks",
+        path: "/student-layout/tasks",
+        icon:<AssignmentIcon/>
+    },
+];
 
-]
-export { admin, student }
+export { admin, student };
+
