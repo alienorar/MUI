@@ -45,7 +45,7 @@ const index = () => {
             </form>
           </div>
           <div className="card-footer">
-            <Button variant="contained" color="success" size="small" type="submit" form="form">
+            <Button variant="contained" color="primary" size="small" type="submit" form="form">
               Submit
             </Button>
           </div>
