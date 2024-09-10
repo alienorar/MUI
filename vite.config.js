@@ -8,6 +8,7 @@ export default defineConfig({
       { find: "@pages", replacement: "/src/pages" },
       { find: "@admin-rights", replacement: "/src/pages/admin-rights" },
       { find: "@student-rights", replacement: "/src/pages/student-rights" },
+      { find: "@components", replacement: "/src/components" },
     ]
   }
 })

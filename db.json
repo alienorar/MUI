@@ -1,0 +1,47 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Juliet Oma",
+      "age": "julie@yahoo.com",
+      "phone": "08100000000",
+      "group":"React js bootcamp N11 "
+    },
+    {
+      "id": 2,
+      "name": "James Williams",
+      "email": "jameswilly@gmail.com",
+      "number": "08111111111"
+    }
+    
+  ],
+  "teachers":[
+    {
+        "id":"456",
+        "name":"Javohir",
+        "course":"frontend"
+
+    },
+    {
+        "id":"452",
+        "name":"Javlon",
+        "course":"backend"
+
+    }
+  ],
+  "groups":[
+    {
+        "id":"i393",
+        "name":"Javohir",
+        "course":"frontend"
+
+    },
+    {
+        "id":"u84378",
+        "name":"Javlon",
+        "course":"backend"
+
+    }
+  ]
+
+}
