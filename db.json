@@ -5,7 +5,7 @@
       "name": "Juliet Oma",
       "age": "julie@yahoo.com",
       "phone": "08100000000",
-      "group":"React js bootcamp N11 "
+      "group": "React js bootcamp N11 "
     },
     {
       "id": 2,
@@ -13,35 +13,55 @@
       "email": "jameswilly@gmail.com",
       "number": "08111111111"
     }
-    
   ],
-  "teachers":[
+  "teachers": [
     {
-        "id":"456",
-        "name":"Javohir",
-        "course":"frontend"
-
+      "id": "456",
+      "name": "Javohir",
+      "course": "frontend"
     },
     {
-        "id":"452",
-        "name":"Javlon",
-        "course":"backend"
-
+      "id": "452",
+      "name": "Javlon",
+      "course": "backend"
+    },
+    {
+      "id": "2013",
+      "name": "Raykhona",
+      "course": "React js Bootcamp"
+    },
+    {
+      "id": "0814",
+      "name": "Nilufar",
+      "course": "Bootcamp"
+    },
+    {
+      "id": "e012",
+      "name": "Raykhona",
+      "course": "Bootcamp"
     }
   ],
-  "groups":[
+  "course": [
     {
-        "id":"i393",
-        "name":"Javohir",
-        "course":"frontend"
-
+      "id": "i393",
+      "name": "Standard",
+      "course": "frontend",
+      "duration": "8 oy",
+      "price": "200$"
     },
     {
-        "id":"u84378",
-        "name":"Javlon",
-        "course":"backend"
-
+      "id": "i393",
+      "name": "Bootcamp",
+      "course": "frontend",
+      "duration": "8 oy",
+      "price": "200$"
+    }
+  ],
+  "group": [
+    {
+      "id": "6478",
+      "name": "Angular js Bootcamp",
+      "course": "frontend"
     }
   ]
-
 }

@@ -1,2 +1,6 @@
 import TeacherTable from './teacher-table';
-export {TeacherTable}
+import TeacherModal from './teacher-modal';
+import StudentModal from './student-modal'
+import StudentTable from './student-table'
+
+export {TeacherTable,TeacherModal,StudentModal,StudentTable}
