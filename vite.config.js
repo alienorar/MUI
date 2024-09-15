@@ -9,6 +9,7 @@ export default defineConfig({
       { find: "@admin-rights", replacement: "/src/pages/admin-rights" },
       { find: "@student-rights", replacement: "/src/pages/student-rights" },
       { find: "@components", replacement: "/src/components" },
+      { find: "@utils", replacement: "/src/utils" },
     ]
   }
 })

@@ -1,14 +1,14 @@
 {
   "students": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Juliet Oma",
       "age": "julie@yahoo.com",
       "phone": "08100000000",
       "group": "React js bootcamp N11 "
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "James Williams",
       "email": "jameswilly@gmail.com",
       "number": "08111111111"
@@ -16,29 +16,19 @@
   ],
   "teachers": [
     {
-      "id": "456",
-      "name": "Javohir",
+      "id": "65fh78",
+      "name": "James Williams",
       "course": "frontend"
     },
     {
-      "id": "452",
-      "name": "Javlon",
-      "course": "backend"
-    },
-    {
-      "id": "2013",
-      "name": "Raykhona",
-      "course": "React js Bootcamp"
-    },
-    {
-      "id": "0814",
-      "name": "Nilufar",
+      "id": "6er578",
+      "name": "Max Uit",
       "course": "Bootcamp"
     },
     {
-      "id": "e012",
-      "name": "Raykhona",
-      "course": "Bootcamp"
+      "name": "Raykhonaaa",
+      "course": "Standard",
+      "id": "d200"
     }
   ],
   "course": [

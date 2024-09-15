@@ -6,49 +6,25 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import Notification from "../../utils/notification";
-
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import { signInValidationSchema } from "../../utils/validation";
 const index = () => {
-  const [form, setForm] = useState({})
-  const [count, setCount] = useState(0)
-  const [time, setTime] = useState(5)
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    let interval;
-    if (count === 3) {
-      interval = setInterval(() => {
-        setTime(prev => prev - 1)
-      }, 1000);
-    }
-    return () => clearInterval(interval)
-  }, [count]);
-
-  useEffect(() => {
-    if (time === 0) {
-      setCount(0)
-      setTime(5)
-    }
-  }, [time])
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setForm({ ...form, [name]: value })
-
+  const initialValues = {
+    name: '',
+    password: ''
   };
-  const handleSubmit = (evt) => {
-    evt.preventDefault()
-    console.log(form);
 
-    if (form.username === "admin") {
-      navigate("/admin-layout")
-    } else if (form.username === "student") {
-      navigate("/student-layout")
-    } else {
-      Notification({ title: "Invalid username", type: "error" });
-      setCount(prev => prev + 1)
-      console.log(count);
+  // const signInValidationSchema = Yup.object().shape({
+  //   name: Yup.string().required("Name is required"),
+  //   password: Yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z]).{6,}$/, "Password must be at least 6 characters and contain at least one uppercase and one lowercase letter").required("Password is required")
 
-    }
+  // });
+
+  const handleSubmit = async (values) => {
+    console.log(values);
+    navigate("/admin-layout")
   };
 
   return (
@@ -62,23 +38,50 @@ const index = () => {
             </Typography>
           </div>
           <div className="card-body">
-            <form className="d-flex flex-column gap-3" onSubmit={handleSubmit} id="form">
+            {/* <form className="d-flex flex-column gap-3" onSubmit={handleSubmit} id="form">
               <TextField id="outlined-basic" label="Username" variant="outlined" name="username"
                 size="small" sx={{ width: 1 }} onChange={handleChange} disabled={count === 3 ? true : false} />
               <TextField id="outlined-basic" label="password" variant="outlined" type="password"
                 size="small" sx={{ width: 1 }} onChange={handleChange} name="password" disabled={count === 3 ? true : false} />
-            </form>
-          </div>
-          <div className="card-footer">
-            <Button variant="contained" color="primary" size="small" type="submit" form="form">
-              Submit
-            </Button>
-            <p>
-              {
-                count === 3 && `Try again after ${time} `
-              }
-            </p>
-
+            </form> */}
+            <Formik initialValues={initialValues} validationSchema={signInValidationSchema} onSubmit={handleSubmit} >
+              <Form id="sign-in" className="flex flex-col ">
+                <Field
+                  name="name"
+                  type="text"
+                  label="name"
+                  variant="outlined"
+                  as={TextField}
+                  fullwidth
+                  margin="normal"
+                  helperText={
+                    <ErrorMessage
+                      name="name"
+                      component="p"
+                      className="text-red-800 text-[16px]"
+                    />
+                  }
+                />
+                <Field
+                  name="password"
+                  type="password"
+                  label="password"
+                  variant="outlined"
+                  as={TextField}
+                  fullwidth
+                  helperText={
+                    <ErrorMessage
+                      name="password"
+                      component="p"
+                      className="text-red-800 text-[16px]"
+                    />
+                  }
+                />
+                <Button variant="contained" color="primary" type="submit" form="sign-in" sx={{ marginTop: "10px", maxWidth: "160px" }} >
+                  Submit
+                </Button>
+              </Form>
+            </Formik>
           </div>
         </div>
 
