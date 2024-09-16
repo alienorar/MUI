@@ -10,6 +10,7 @@ export default defineConfig({
       { find: "@student-rights", replacement: "/src/pages/student-rights" },
       { find: "@components", replacement: "/src/components" },
       { find: "@utils", replacement: "/src/utils" },
+      { find: "@validation", replacement: "/src/utils/validation" },
     ]
   }
 })

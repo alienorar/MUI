@@ -8,11 +8,12 @@ import { ToastContainer } from 'react-toastify';
 import Notification from "../../utils/notification";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { signInValidationSchema } from "../../utils/validation";
+import axios from "axios";
 const index = () => {
   const navigate = useNavigate();
 
   const initialValues = {
-    name: '',
+    phone_number: '',
     password: ''
   };
 
@@ -24,7 +25,18 @@ const index = () => {
 
   const handleSubmit = async (values) => {
     console.log(values);
-    navigate("/admin-layout")
+    try {
+      const response = await axios.post("https://texnoark.ilyosbekdev.uz/auth/sign-in", values)
+      console.log(response);
+
+      if (response.status === 201) {
+        navigate("/category")
+      }
+    } catch (error) {
+      console.log(error);
+
+    }
+
   };
 
   return (
@@ -33,30 +45,24 @@ const index = () => {
       <div className="container d-flex justify-content-center align-items-center mt-5 p-5 ">
         <div className="card w-25">
           <div className="card-header">
-            <Typography variant="h4" component="h2">
-              Login
+            <Typography variant="h4" component="h2" sx={{ textAlign: "center" }}>
+              Sign in
             </Typography>
           </div>
           <div className="card-body">
-            {/* <form className="d-flex flex-column gap-3" onSubmit={handleSubmit} id="form">
-              <TextField id="outlined-basic" label="Username" variant="outlined" name="username"
-                size="small" sx={{ width: 1 }} onChange={handleChange} disabled={count === 3 ? true : false} />
-              <TextField id="outlined-basic" label="password" variant="outlined" type="password"
-                size="small" sx={{ width: 1 }} onChange={handleChange} name="password" disabled={count === 3 ? true : false} />
-            </form> */}
             <Formik initialValues={initialValues} validationSchema={signInValidationSchema} onSubmit={handleSubmit} >
               <Form id="sign-in" className="flex flex-col ">
                 <Field
-                  name="name"
+                  name="phone_number"
                   type="text"
-                  label="name"
+                  label="Phone number"
                   variant="outlined"
                   as={TextField}
                   fullwidth
                   margin="normal"
                   helperText={
                     <ErrorMessage
-                      name="name"
+                      name="phone_number"
                       component="p"
                       className="text-red-800 text-[16px]"
                     />
