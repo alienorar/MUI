@@ -7,10 +7,11 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import { NavLink } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import axios from "axios";
+// import axios from "axios";
+// import { signUpValidationSchema } from "@validation";
 // import Notification from "../../utils/notification";
 import { signUpValidationSchema } from "../../utils/validation";
-// import { signUpValidationSchema } from "@validation";
+import { auth } from "@service";
 const index = () => {
     const navigate = useNavigate();
 
@@ -26,7 +27,7 @@ const index = () => {
         console.log(values);
         // navigate("/sign-up")
         try {
-            const res = await axios.post("https://texnoark.ilyosbekdev.uz/auth/admin/sign-up", values)
+            const res = await auth.sign_up(values)
             console.log(res);
             if (res.status = 201) {
                 navigate("/sign-in")

@@ -9,7 +9,7 @@ import { json } from "react-router-dom";
 
 const Index = () => {
 const initialValues ={
-    category_name:""
+    name:""
 }
 
 
@@ -23,13 +23,13 @@ const initialValues ={
                     <Formik validationSchema={categoryValidationSchema} initialValues={initialValues}>
                         <Form className="flex flex-col">
                             <Field
-                                name="category_name"
+                                name="name"
                                 type="text"
                                 label="Category Name"
                                 variant="outlined"
                                 as={TextField}
                                 fullWidth
-                                helperText={<ErrorMessage name="category_name" component="p" className="text-red-800 text-[16px]" />}
+                                helperText={<ErrorMessage name="name" component="p" className="text-red-800 text-[16px]" />}
                             />
                             <Button variant="contained" color="primary" type="submit" sx={{ marginTop: "10px", maxWidth: "160px" }}>
                                 Submit

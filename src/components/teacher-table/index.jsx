@@ -27,12 +27,10 @@ export default function BasicTable({ data }) {
 
         } catch (error) {
             console.log(error);
-  
+
         }
         setOpen(true)
-
     }
-
     const deleteItem = async (item) => {
         try {
             await axios.delete(`http://localhost:3000/teachers/${item.id}`);
@@ -42,7 +40,6 @@ export default function BasicTable({ data }) {
             console.log(error);
         }
     }
-
     return (
         <>
             <TeacherModal open={open} handleClose={handleClose} update={update} course={course} />
@@ -90,6 +87,5 @@ export default function BasicTable({ data }) {
                 </Table>
             </TableContainer>
         </>
-
     );
 }

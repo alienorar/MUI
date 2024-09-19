@@ -37,4 +37,4 @@ const Header = ({ handleDrawerToggle }) => {
     );
 }
 
-export default Header;  // <--- Make sure this is default export
+export default Header; 

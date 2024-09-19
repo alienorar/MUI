@@ -24,7 +24,7 @@ export default function AccountMenu() {
         setAnchorEl(null);
     };
     const logout = () => {
-        handleClose()
+        localStorage.removeItem("acces_token")
         navigate("/")
     }
     return (

@@ -1,4 +1,4 @@
-import { Category } from "@mui/icons-material";
+
 import * as Yup from "yup"
 
 export const signInValidationSchema = Yup.object().shape({
@@ -33,7 +33,7 @@ export const signUpValidationSchema = Yup.object().shape({
 
 // <============ Category ==========>
 export const categoryValidationSchema = Yup.object().shape({
-    category_name: Yup.string()
+    name: Yup.string()
         .required('Category name is required')
         .min(3, 'Name must be at least 3 characters'),
 });

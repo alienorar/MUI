@@ -1,38 +1,63 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import { categoryValidationSchema } from "@validation";
+import { category } from "@service";
 
-import axios from "axios"
-import { useEffect, useState } from 'react';
-import { StudentTable, StudentModal } from "@components";
-import React from 'react'
-import { Button } from "@mui/material";
 const Index = () => {
-  const [data, setData] = useState([])
-  const [open, setOpen] = useState(false)
-  const [course, setCourse] = useState([])
-  useEffect(() => {
-    axios.get("http://localhost:3000/teachers").then(res => {
-      console.log(res);
-      setData(res?.data)
-    })
-  }, []);
-  const handleClose = () => {
-    setOpen(false)
+  const initialValues = {
+    name: ""
   }
 
-  const openModal = async () => {
-    await axios.get("http://localhost:3000/course").then(res => {
-      // console.log(res);
-      setCourse(res?.data)
+  const handleSubmit = async (values) => {
+    console.log(values);
+    try {
+      const response = await category.create(values)
+      console.log(category.id);
 
-    })
-    setOpen(true)
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+
   }
+
+
   return (
-    <div>
-      <StudentModal open={open} handleClose={handleClose} course={course} />
-      <Button variant='contained' onClick={openModal} sx={{ marginBottom: '20px' }} >Open modal</Button>
-      <StudentTable data={data} />
-    </div>
-  )
-}
+    <div className="flex w-full items-center justify-center flex-col gap-5 mt-7">
+      <div className="card w-80">
+        <div className="card-header">
+          <h1 className="text-center text-[26px] text-blue"> Categories</h1>
+        </div>
+        <div className="card-body">
+          <Formik validationSchema={categoryValidationSchema} initialValues={initialValues} onSubmit={handleSubmit}>
+            <Form className="flex flex-col">
+              <Field
+                name="name"
+                type="text"
+                label="Category Name"
+                variant="outlined"
+                as={TextField}
+                fullWidth
+                helperText={<ErrorMessage name="name" component="p" className="text-red-800 text-[16px]" />}
+              />
+              <Button variant="contained" color="primary" type="submit" sx={{ marginTop: "10px", maxWidth: "120px", display: "inline-block" }}>
+                Create
+              </Button>
 
-export default Index
+              <Button variant="contained" color="secondary" type="submit" sx={{ marginTop: "10px", maxWidth: "120px" }}>
+                Update
+              </Button>
+            </Form>
+          </Formik>
+        </div>
+      </div>
+
+
+    </div>
+  );
+};
+
+export default Index;

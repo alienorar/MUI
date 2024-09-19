@@ -5,10 +5,10 @@ import Button from '@mui/material/Button';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
-import Notification from "../../utils/notification";
+// import Notification from "../../utils/notification";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { signInValidationSchema } from "../../utils/validation";
-import axios from "axios";
+import { signInValidationSchema } from "@validation";
+import { auth } from "@service";
 const index = () => {
   const navigate = useNavigate();
 
@@ -17,21 +17,15 @@ const index = () => {
     password: ''
   };
 
-  // const signInValidationSchema = Yup.object().shape({
-  //   name: Yup.string().required("Name is required"),
-  //   password: Yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z]).{6,}$/, "Password must be at least 6 characters and contain at least one uppercase and one lowercase letter").required("Password is required")
-
-  // });
-
   const handleSubmit = async (values) => {
     console.log(values);
     try {
-      const response = await axios.post("https://texnoark.ilyosbekdev.uz/auth/sign-in", values)
+      const response = await auth.sign_in(values)
       console.log(response);
-
-      if (response.status === 201) {
-        navigate("/category")
-      }
+      const access_token = response?.data?.data?.tokens?.access_token
+      // console.log(acces_token);
+      localStorage.setItem("access_token", access_token)
+      navigate("/admin-layout")
     } catch (error) {
       console.log(error);
 
