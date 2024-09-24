@@ -1,14 +1,15 @@
-import SignIn from './sign-in'
-import AdminLayout from './admin-layout'
-import StudentLayout from './student-layout'
-import SignUp from './sign-up'
-import Category  from './category'
+import SignUp from './sign-up';
+import SignIn from './sign-in';
+import AdminLayout from './admin-layout';
+import Category  from './category';
+import Brands  from './brand';
+import SubCategories from './sub-categories'
 
 export{
 SignIn,
 AdminLayout,
-StudentLayout,
 SignUp,
-Category
-
+Category,
+Brands,
+SubCategories
 }

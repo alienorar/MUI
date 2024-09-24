@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { category } from "@service";
-import { Button } from "@mui/material";
-import { CategoryModal } from "@components";
+import { useEffect, useState } from "react";
 import BasicTable from "../../components/global-table";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
+import { brand } from "@service";
+import { BrandModal } from "@components";
+import { category } from "@service";
+// import { useParams } from "react-router-dom";
+
 
 const Index = () => {
     const [open, setOpen] = useState(false);
+    const [brands, setBrands] = useState([]);
     const [categories, setCategories] = useState([]);
     const [update, setUpdate] = useState({});
-    const navigate = useNavigate()
+    // const { id } = useParams()
+    // console.log(id);
+
     const handleClose = () => {
         setOpen(false);
     };
@@ -19,50 +24,74 @@ const Index = () => {
         setOpen(true);
     };
 
-    // get data
-    const getCategory = async () => {
-        const resp = await category.get()
-        if (resp.status === 200) {
-            const data = resp.data?.data?.categories
-            setCategories(data);
+
+    // fetch categories
+    const fetchCategories = async () => {
+        try {
+            const res = await category.get();
+            const fetchedCategories = res?.data?.data?.categories;
+            setCategories(fetchedCategories);
+            console.log(categories);
+
+        } catch (error) {
+            console.log(error);
         }
     };
 
-    // delete 
-    const deleteCategory = (id) => async () => {
-        const resp = await category.delete(id)
+    useEffect(() => {
+        fetchCategories();
+    }, []);
+
+    // openModal to create a new  brand 
+
+    const openModalForBrand = () => {
+        fetchCategories()
+        openModal()
+        getBrand()
+    }
+
+    // get 
+    const getBrand = async () => {
+        const resp = await brand.get()
         if (resp.status === 200) {
-            getCategory()
+            const data = resp.data?.data?.brands
+            setBrands(data);
+        }
+    };
+
+
+    // delete 
+    const deleteBrand = (id) => async () => {
+        const resp = await brand.delete(id)
+        if (resp.status === 200) {
+            getBrand()
         }
     };
 
     // edit
-    const editCategory = (item) => () => {
+    const editBrand = (item) => () => {
         openModal()
         setUpdate(item);
     };
 
-    const handleView = (id) => {
-        navigate(`/admin-layout/categories/${id}`);
-    }
-
     useEffect(() => {
-        getCategory()
-    }, []);
+        getBrand();
+    }, []); 
+
 
     return (
         <div>
-            <CategoryModal open={open} handleClose={handleClose} getData={getCategory} update={update} />
+            <BrandModal open={open} handleClose={handleClose} getData={getBrand} update={update} categories={categories} />
             <Button
                 variant="contained"
                 color="success"
-                onClick={openModal}
+                onClick={openModalForBrand}
                 className="mb-3"
             >
-                Add Category
+                Add Brand
             </Button>
-            <BasicTable headerData={["T/R", "Category Name", "Actions"]}>
-                {categories?.map((row, index) => (
+            <BasicTable headerData={["T/R", "Brand Name", "Actions"]}>
+                {brands?.map((row, index) => (
                     <TableRow
                         key={row.id}
                         sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -74,7 +103,7 @@ const Index = () => {
                                 variant="contained"
                                 color="primary"
                                 className=" w-[80px]"
-                                onClick={editCategory(row)}
+                                onClick={editBrand(row)}
                             >
                                 edit
                             </Button>
@@ -82,17 +111,9 @@ const Index = () => {
                                 variant="contained"
                                 color="error"
                                 className=" w-[80px]"
-                                onClick={deleteCategory(row.id)}
+                                onClick={deleteBrand(row.id)}
                             >
                                 Delete
-                            </Button>
-                            <Button
-                                variant="contained"
-                                color="secondary"
-                                className=" w-[80px]"
-                                onClick={() => handleView(`${row.id}`)}
-                            >
-                                View
                             </Button>
                         </TableCell>
                     </TableRow>
@@ -102,4 +123,4 @@ const Index = () => {
     );
 };
 
-export default Index;
+export default Index; 

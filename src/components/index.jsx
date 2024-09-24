@@ -1,6 +1,6 @@
-import TeacherTable from './teacher-table';
-import TeacherModal from './teacher-modal';
-import StudentModal from './student-modal'
-import StudentTable from './student-table'
+import CategoryModal from './category-modal'
+import GlobalTable from './global-table'
+import BrandModal from './brand-modal'
 
-export {TeacherTable,TeacherModal,StudentModal,StudentTable}
+
+export { CategoryModal, GlobalTable, BrandModal, }
